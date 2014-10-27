@@ -3,7 +3,7 @@
 	"description": "Aimeos SwiftMailer adapter",
 	"type": "aimeos-extension",
 	"require": {
-		"swiftmailer/swiftmailer": "5.*",
+		"swiftmailer/swiftmailer": "5.*"
 	},
 	"autoload": {
 		"psr-0": {
