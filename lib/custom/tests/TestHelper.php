@@ -46,6 +46,9 @@ class TestHelper
 	}
 
 
+	/**
+	 * @param string $site
+	 */
 	private static function _createContext( $site )
 	{
 		$ctx = new MShop_Context_Item_Default();
