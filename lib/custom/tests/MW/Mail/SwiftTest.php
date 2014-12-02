@@ -20,6 +20,10 @@ class MW_Mail_SwiftTest extends MW_Unittest_Testcase
 	 */
 	protected function setUp()
 	{
+		if( class_exists( 'Swift_Message' ) === false ) {
+			$this->markTestSkipped( 'Class Swift_Message not found' );
+		}
+
 		$transport = new Swift_Transport_NullTransport( new Swift_Events_SimpleEventDispatcher() );
 
 		$this->_mock = $this->getMockBuilder( 'Swift_Mailer' )->setConstructorArgs( array( $transport ) )->getMock();

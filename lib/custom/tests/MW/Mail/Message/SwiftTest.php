@@ -20,6 +20,10 @@ class MW_Mail_Message_SwiftTest extends MW_Unittest_Testcase
 	 */
 	protected function setUp()
 	{
+		if( class_exists( 'Swift_Message' ) === false ) {
+			$this->markTestSkipped( 'Class Swift_Message not found' );
+		}
+
 		$this->_mock = $this->getMockBuilder( 'Swift_Message' )
 			->setMethods( array(
 				'addFrom', 'addTo', 'addCc', 'addBcc',
