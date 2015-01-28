@@ -1,14 +1,21 @@
+sudo: false
 language: php
+
 php:
-  - "hhvm"
-  - "5.6"
-  - "5.5"
-  - "5.4"
-  - "5.3"
+  - hhvm
+  - 5.6
+  - 5.5
+  - 5.4
+  - 5.3
+
 before_script:
-  - git clone --depth=50 --branch=master git://github.com/nsendetzky/arcavias-core.git ../arcavias-core
+  - git clone --depth=50 --branch=master git://github.com/aimeos/arcavias-core.git ../arcavias-core
   - cd ../arcavias-core
   - mv ../ai-swiftmailer ext/
   - composer require "swiftmailer/swiftmailer" ">=4.0"
-  - composer install
-script: "vendor/bin/phing -Ddir=ext/ai-swiftmailer testext && vendor/bin/phing -Ddir=ext/ai-swiftmailer checkext"
+
+script:
+  - vendor/bin/phing -Ddir=ext/ai-swiftmailer testext checkext
+
+after_success:
+  - php vendor/bin/coveralls -c ext/ai-swiftmailer/.coveralls.yml
