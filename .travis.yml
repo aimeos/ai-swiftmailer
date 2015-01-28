@@ -15,7 +15,7 @@ before_script:
   - composer require "swiftmailer/swiftmailer" ">=4.0"
 
 script:
-  - vendor/bin/phing -Ddir=ext/ai-swiftmailer testext checkext
+  - vendor/bin/phing -Ddir=ext/ai-swiftmailer coverageext checkext
 
 after_success:
   - php vendor/bin/coveralls -c ext/ai-swiftmailer/.coveralls.yml
