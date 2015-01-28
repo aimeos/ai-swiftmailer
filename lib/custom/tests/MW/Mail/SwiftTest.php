@@ -56,4 +56,10 @@ class MW_Mail_SwiftTest extends MW_Unittest_Testcase
 		$this->_object->send( $this->_object->createMessage() );
 	}
 
+
+	public function testClone()
+	{
+		$result = clone $this->_object;
+		$this->assertInstanceOf( 'MW_Mail_Interface', $result );
+	}
 }
