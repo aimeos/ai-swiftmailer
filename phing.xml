@@ -35,7 +35,7 @@
 		<exec command="git push --tags" checkreturn="true" logoutput="true" />
 	</target>
 
-	<target name="all" depends="test,check,build" description="Builds all parts of the package">
+	<target name="all" depends="test,check,clean" description="Builds all parts of the package">
 	</target>
 
 </project>
