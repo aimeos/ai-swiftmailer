@@ -3,7 +3,7 @@
 return array(
 	'name' => 'ai-swiftmailer',
 	'depends' => array(
-		'arcavias-core',
+		'aimeos-core',
 	),
 	'include' => array(
 		'lib/custom/src',
