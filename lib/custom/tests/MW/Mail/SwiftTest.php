@@ -9,7 +9,7 @@
 class MW_Mail_SwiftTest extends MW_Unittest_Testcase
 {
 	private $_object;
-	private $_stub;
+	private $_mock;
 
 
 	/**
@@ -26,12 +26,9 @@ class MW_Mail_SwiftTest extends MW_Unittest_Testcase
 
 		$transport = new Swift_Transport_NullTransport( new Swift_Events_SimpleEventDispatcher() );
 
-		$this->_stub = $this->getMockBuilder( 'Swift_Mailer' )->setConstructorArgs( array( $transport ) )->getMock();
-		$this->_object = $this->getMockBuilder( 'MW_Mail_Swift' )->setMethods( array( 'getObject' ) )->getMock();
-
-		$this->_object->expects( $this->any() )->method( 'getObject' )->will( $this->returnValue( $this->_stub ) );
+		$this->_mock = $this->getMockBuilder( 'Swift_Mailer' )->setConstructorArgs( array( $transport ) )->getMock();
+		$this->_object = new MW_Mail_Swift( $this->_mock );
 	}
-
 
 	/**
 	 * Tears down the fixture, for example, closes a network connection.
@@ -41,7 +38,16 @@ class MW_Mail_SwiftTest extends MW_Unittest_Testcase
 	 */
 	protected function tearDown()
 	{
-		unset( $this->_object, $this->_stub );
+		unset( $this->_object, $this->_mock );
+	}
+
+
+	public function testClosure()
+	{
+		$mock = $this->_mock;
+		$object = new MW_Mail_Swift( function() use ( $mock ) { return $mock; } );
+
+		$this->assertInstanceOf( 'MW_Mail_Swift', $object );
 	}
 
 
@@ -54,7 +60,8 @@ class MW_Mail_SwiftTest extends MW_Unittest_Testcase
 
 	public function testSend()
 	{
-		$this->_stub->expects( $this->once() )->method( 'send' );
+		$this->_mock->expects( $this->once() )->method( 'send' );
+
 		$this->_object->send( $this->_object->createMessage() );
 	}
 
