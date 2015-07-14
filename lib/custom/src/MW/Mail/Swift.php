@@ -16,7 +16,7 @@
  */
 class MW_Mail_Swift implements MW_Mail_Interface
 {
-	private $object;
+	private $_object;
 
 
 	/**
@@ -38,11 +38,11 @@ class MW_Mail_Swift implements MW_Mail_Interface
 	 */
 	public function getObject()
 	{
-		if( !isset( $this->object ) ) {
-			$this->object = \Mail::getSwiftMailer();
+		if( !isset( $this->_object ) ) {
+			$this->_object = \Mail::getSwiftMailer();
 		}
 
-		return $this->object;
+		return $this->_object;
 	}
 
 
@@ -62,6 +62,6 @@ class MW_Mail_Swift implements MW_Mail_Interface
 	 */
 	public function __clone()
 	{
-		$this->object = ( isset( $this->object ) ? clone $this->object : null );
+		$this->_object = ( isset( $this->_object ) ? clone $this->_object : null );
 	}
 }
