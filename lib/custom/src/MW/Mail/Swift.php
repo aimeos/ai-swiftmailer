@@ -16,18 +16,7 @@
  */
 class MW_Mail_Swift implements MW_Mail_Interface
 {
-	private $_object;
-
-
-	/**
-	 * Initializes the instance of the class.
-	 *
-	 * @param Swift_Mailer $object Swift_Mailer object
-	 */
-	public function __construct( \Swift_Mailer $object )
-	{
-		$this->_object = $object;
-	}
+	private $object;
 
 
 	/**
@@ -43,13 +32,28 @@ class MW_Mail_Swift implements MW_Mail_Interface
 
 
 	/**
+	 * Returns the mailer object.
+	 *
+	 * @return Swift_Mailer Swift_Mailer object
+	 */
+	public function getObject()
+	{
+		if( !isset( $this->object ) ) {
+			$this->object = \Mail::getSwiftMailer();
+		}
+
+		return $this->object;
+	}
+
+
+	/**
 	 * Sends the e-mail message to the mail server.
 	 *
 	 * @param MW_Mail_Message_Interface $message E-mail message object
 	 */
 	public function send( MW_Mail_Message_Interface $message )
 	{
-		$this->_object->send( $message->getObject() );
+		$this->getObject()->send( $message->getObject() );
 	}
 
 
@@ -58,6 +62,6 @@ class MW_Mail_Swift implements MW_Mail_Interface
 	 */
 	public function __clone()
 	{
-		$this->_object = clone $this->_object;
+		$this->object = ( isset( $this->object ) ? clone $this->object : null );
 	}
 }
