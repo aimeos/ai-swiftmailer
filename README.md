@@ -22,18 +22,26 @@ The ai-swiftmailer extension integrates the PHP Swiftmailer library for handling
 
 ## Installation
 
-To allow the Aimeos web shop components accessing the e-mail infrastructure of your own framework or application, you have to install the adapter via composer first. Add "aimeos/ai-swiftmailer" to your composer.json:
+To allow the Aimeos web shop components accessing the e-mail infrastructure of your own framework or application, you have to install the adapter first. As every Aimeos extension, the easiest way is to install it via [composer](https://getcomposer.org/). If you don't have composer installed yet, you can execute this string on the command line to download it:
 ```
-"require": {
+php -r "readfile('https://getcomposer.org/installer');" | php -- --filename=composer
+```
+
+Add the ai-swiftmailer extension to the "require" section of your ```composer.json``` file:
+```
+"require": [
     "aimeos/ai-swiftmailer": "dev-master",
     ...
-},
+],
 ```
-If you don't want to use the latest version, you can also install any release. The list of releases is available at [Packagist](https://packagist.org/packages/aimeos/ai-swiftmailer).
+If you don't want to use the latest version, you can also install any release. The list of releases is available at [Packagist](https://packagist.org/packages/aimeos/ai-swiftmailer). Afterwards you only need to execute the composer update command on the command line:
+```
+composer update
+```
 
 ## Setup
 
-Afterwards, you can add the Swiftmailer object to the Aimeos context, which you have to create to get the Aimeos components running:
+Now add the Swiftmailer object to the Aimeos context, which you have to create to get the Aimeos components running:
 ```
 // $app is an object that can create the Swiftmailer object 
 $closure = function() use ( $app ) {
