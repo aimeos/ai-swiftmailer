@@ -28,9 +28,9 @@ class MW_Mail_Swift implements MW_Mail_Interface
 	{
 		if( $object instanceof Closure ) {
 			$this->_closure = $object;
+		} else {
+			$this->_closure = function() use ( $object ) { return $object; };
 		}
-
-		$this->_closure = function() use ( $object ) { return $object; };
 	}
 
 
