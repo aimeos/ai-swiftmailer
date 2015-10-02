@@ -16,7 +16,7 @@
  */
 class MW_Mail_Swift implements MW_Mail_Interface
 {
-	private $_closure;
+	private $closure;
 
 
 	/**
@@ -27,9 +27,9 @@ class MW_Mail_Swift implements MW_Mail_Interface
 	public function __construct( $object )
 	{
 		if( $object instanceof Closure ) {
-			$this->_closure = $object;
+			$this->closure = $object;
 		} else {
-			$this->_closure = function() use ( $object ) { return $object; };
+			$this->closure = function() use ( $object ) { return $object; };
 		}
 	}
 
@@ -53,7 +53,7 @@ class MW_Mail_Swift implements MW_Mail_Interface
 	 */
 	public function send( MW_Mail_Message_Interface $message )
 	{
-		$closure = $this->_closure;
+		$closure = $this->closure;
 		$closure()->send( $message->getObject() );
 	}
 
@@ -63,7 +63,7 @@ class MW_Mail_Swift implements MW_Mail_Interface
 	 */
 	public function __clone()
 	{
-		$closure = $this->_closure;
-		$this->_closure = function() use ( $closure ) { return clone $closure(); };
+		$closure = $this->closure;
+		$this->closure = function() use ( $closure ) { return clone $closure(); };
 	}
 }

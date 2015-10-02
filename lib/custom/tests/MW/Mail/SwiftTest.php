@@ -8,8 +8,8 @@
 
 class MW_Mail_SwiftTest extends MW_Unittest_Testcase
 {
-	private $_object;
-	private $_mock;
+	private $object;
+	private $mock;
 
 
 	/**
@@ -26,8 +26,8 @@ class MW_Mail_SwiftTest extends MW_Unittest_Testcase
 
 		$transport = new Swift_Transport_NullTransport( new Swift_Events_SimpleEventDispatcher() );
 
-		$this->_mock = $this->getMockBuilder( 'Swift_Mailer' )->setConstructorArgs( array( $transport ) )->getMock();
-		$this->_object = new MW_Mail_Swift( $this->_mock );
+		$this->mock = $this->getMockBuilder( 'Swift_Mailer' )->setConstructorArgs( array( $transport ) )->getMock();
+		$this->object = new MW_Mail_Swift( $this->mock );
 	}
 
 	/**
@@ -38,13 +38,13 @@ class MW_Mail_SwiftTest extends MW_Unittest_Testcase
 	 */
 	protected function tearDown()
 	{
-		unset( $this->_object, $this->_mock );
+		unset( $this->object, $this->mock );
 	}
 
 
 	public function testClosure()
 	{
-		$mock = $this->_mock;
+		$mock = $this->mock;
 		$object = new MW_Mail_Swift( function() use ( $mock ) { return $mock; } );
 
 		$this->assertInstanceOf( 'MW_Mail_Swift', $object );
@@ -53,22 +53,22 @@ class MW_Mail_SwiftTest extends MW_Unittest_Testcase
 
 	public function testCreateMessage()
 	{
-		$result = $this->_object->createMessage( 'ISO-8859-1' );
+		$result = $this->object->createMessage( 'ISO-8859-1' );
 		$this->assertInstanceOf( 'MW_Mail_Message_Interface', $result );
 	}
 
 
 	public function testSend()
 	{
-		$this->_mock->expects( $this->once() )->method( 'send' );
+		$this->mock->expects( $this->once() )->method( 'send' );
 
-		$this->_object->send( $this->_object->createMessage() );
+		$this->object->send( $this->object->createMessage() );
 	}
 
 
 	public function testClone()
 	{
-		$result = clone $this->_object;
+		$result = clone $this->object;
 		$this->assertInstanceOf( 'MW_Mail_Interface', $result );
 	}
 }
