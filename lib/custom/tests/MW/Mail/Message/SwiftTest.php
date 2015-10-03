@@ -6,7 +6,7 @@
  */
 
 
-class MW_Mail_Message_SwiftTest extends MW_Unittest_Testcase
+class MW_Mail_Message_SwiftTest extends PHPUnit_Framework_TestCase
 {
 	private $object;
 	private $mock;
