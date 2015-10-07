@@ -1,12 +1,13 @@
 <?php
 
+namespace Aimeos\MW\Mail\Message;
+
+
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Aimeos (aimeos.org), 2014
  */
-
-
-class MW_Mail_Message_SwiftTest extends PHPUnit_Framework_TestCase
+class SwiftTest extends \PHPUnit_Framework_TestCase
 {
 	private $object;
 	private $mock;
@@ -31,7 +32,7 @@ class MW_Mail_Message_SwiftTest extends PHPUnit_Framework_TestCase
 				'setSubject', 'setBody', 'addPart'
 			) )->getMock();
 
-		$this->object = new MW_Mail_Message_Swift( $this->mock, 'UTF-8' );
+		$this->object = new \Aimeos\MW\Mail\Message\Swift( $this->mock, 'UTF-8' );
 	}
 
 	/**
@@ -163,6 +164,6 @@ class MW_Mail_Message_SwiftTest extends PHPUnit_Framework_TestCase
 	public function testClone()
 	{
 		$result = clone $this->object;
-		$this->assertInstanceOf( 'MW_Mail_Message_Interface', $result );
+		$this->assertInstanceOf( '\\Aimeos\\MW\\Mail\\Message\\Iface', $result );
 	}
 }

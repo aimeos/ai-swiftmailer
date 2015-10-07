@@ -8,13 +8,16 @@
  */
 
 
+namespace Aimeos\MW\Mail;
+
+
 /**
  * SwiftMailer implementation for creating and sending e-mails.
  *
  * @package MW
  * @subpackage Mail
  */
-class MW_Mail_Swift implements MW_Mail_Interface
+class Swift implements \Aimeos\MW\Mail\Iface
 {
 	private $closure;
 
@@ -38,20 +41,20 @@ class MW_Mail_Swift implements MW_Mail_Interface
 	 * Creates a new e-mail message object.
 	 *
 	 * @param string $charset Default charset of the message
-	 * @return MW_Mail_Message_Interface E-mail message object
+	 * @return \Aimeos\MW\Mail\Message\Iface E-mail message object
 	 */
 	public function createMessage( $charset = 'UTF-8' )
 	{
-		return new MW_Mail_Message_Swift( \Swift_Message::newInstance(), $charset );
+		return new \Aimeos\MW\Mail\Message\Swift( \Swift_Message::newInstance(), $charset );
 	}
 
 
 	/**
 	 * Sends the e-mail message to the mail server.
 	 *
-	 * @param MW_Mail_Message_Interface $message E-mail message object
+	 * @param \Aimeos\MW\Mail\Message\Iface $message E-mail message object
 	 */
-	public function send( MW_Mail_Message_Interface $message )
+	public function send( \Aimeos\MW\Mail\Message\Iface $message )
 	{
 		$closure = $this->closure;
 		$closure()->send( $message->getObject() );
