@@ -25,7 +25,7 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	/**
 	 * Initializes the message instance.
 	 *
-	 * @param Swift_Message $object Swift message object
+	 * @param \Swift_Message $object Swift message object
 	 * @param string $charset Default charset of the message
 	 */
 	public function __construct( \Swift_Message $object, $charset )
@@ -212,7 +212,7 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	/**
 	 * Returns the internal Swift mail message object.
 	 *
-	 * @return Swift_Message Swift mail message object
+	 * @return \Swift_Message Swift mail message object
 	 */
 	public function getObject()
 	{
