@@ -20,7 +20,7 @@
 	"prefer-stable": true,
 	"minimum-stability": "dev",
 	"require": {
-		"php": ">=5.3.3"
+		"php": ">=5.3.3",
 		"swiftmailer/swiftmailer": ">=4.0"
 	},
 	"require-dev": {
