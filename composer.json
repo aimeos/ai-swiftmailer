@@ -20,14 +20,15 @@
 	"prefer-stable": true,
 	"minimum-stability": "dev",
 	"require": {
+		"php": ">=5.3.3"
 		"swiftmailer/swiftmailer": ">=4.0"
 	},
 	"require-dev": {
 		"satooshi/php-coveralls": "dev-master"
 	},
 	"autoload": {
-		"psr-0": {
-			"MW": "lib/custom/src"
+		"psr-4": {
+			"Aimeos\\MW\\": "lib/custom/src/MW"
 		},
 		"classmap": [
 			"lib/custom/src"
