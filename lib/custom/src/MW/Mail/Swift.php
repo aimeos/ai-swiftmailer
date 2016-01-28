@@ -25,11 +25,11 @@ class Swift implements \Aimeos\MW\Mail\Iface
 	/**
 	 * Initializes the instance of the class.
 	 *
-	 * @param Closure|Swift_Mailer $object Closure or Swift_Mailer object
+	 * @param \Closure|Swift_Mailer $object Closure or Swift_Mailer object
 	 */
 	public function __construct( $object )
 	{
-		if( $object instanceof Closure ) {
+		if( $object instanceof \Closure ) {
 			$this->closure = $object;
 		} else {
 			$this->closure = function() use ( $object ) { return $object; };
