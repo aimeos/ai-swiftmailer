@@ -2,7 +2,7 @@
 	"name": "aimeos/ai-swiftmailer",
 	"description": "SwiftMailer adapter for Aimeos web shops and e-commerce solutions",
 	"keywords": ["aimeos", "adapter", "swiftmailer", "mail", "shop", "e-commerce"],
-	"homepage": "https://aimeos.org",
+	"homepage": "https://aimeos.org/",
 	"type": "aimeos-extension",
 	"license": "LGPL-3.0",
 	"support": {
