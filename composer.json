@@ -22,7 +22,8 @@
 	"require": {
 		"php": ">=5.3.3",
 		"swiftmailer/swiftmailer": ">=4.0",
-		"composer/installers": "^1.0"
+		"composer/installers": "^1.0",
+		"aimeos/aimeos-core": "dev-master"
 	},
 	"require-dev": {
 		"satooshi/php-coveralls": "dev-master"
