@@ -5,7 +5,7 @@ namespace Aimeos\MW\Mail\Message;
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2014-2016
+ * @copyright Aimeos (aimeos.org), 2014-2017
  */
 class SwiftTest extends \PHPUnit\Framework\TestCase
 {
