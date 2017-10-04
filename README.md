@@ -30,7 +30,7 @@ php -r "readfile('https://getcomposer.org/installer');" | php -- --filename=comp
 Add the ai-swiftmailer extension to the "require" section of your ```composer.json``` file:
 ```
 "require": [
-    "aimeos/ai-swiftmailer": "dev-master",
+    "aimeos/ai-swiftmailer": "~2017.10",
     ...
 ],
 ```
@@ -43,7 +43,7 @@ composer update
 
 Now add the Swiftmailer object to the Aimeos context, which you have to create to get the Aimeos components running:
 ```
-// $app is an object that can create the Swiftmailer object 
+// $app is an object that can create the Swiftmailer object
 $closure = function() use ( $app ) {
     return $app->getSwiftMailer();
 };
