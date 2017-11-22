@@ -7,7 +7,7 @@
 [![Build Status](https://travis-ci.org/aimeos/ai-swiftmailer.svg)](https://travis-ci.org/aimeos/ai-swiftmailer)
 [![Coverage Status](https://coveralls.io/repos/aimeos/ai-swiftmailer/badge.svg?branch=master)](https://coveralls.io/r/aimeos/ai-swiftmailer?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/aimeos/ai-swiftmailer/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/aimeos/ai-swiftmailer/?branch=master)
-[![HHVM Status](http://hhvm.h4cc.de/badge/aimeos/ai-swiftmailer.svg)](http://hhvm.h4cc.de/package/aimeos/ai-swiftmailer)
+[![License](https://poser.pugx.org/aimeos/ai-swiftmailer/license.svg)](https://packagist.org/packages/aimeos/ai-swiftmailer)
 
 The Aimeos web shop components can integrate into almost any PHP application and uses the infrastructure of the application for building URLs, caching content, configuration settings, logging messages, session handling, sending e-mails or handling translations.
 
@@ -43,7 +43,7 @@ composer update
 
 Now add the Swiftmailer object to the Aimeos context, which you have to create to get the Aimeos components running:
 ```
-// $app is an object that can create the Swiftmailer object 
+// $app is an object that can create the Swiftmailer object
 $closure = function() use ( $app ) {
     return $app->getSwiftMailer();
 };
