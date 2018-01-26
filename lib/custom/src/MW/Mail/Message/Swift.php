@@ -203,7 +203,7 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 */
 	public function embedAttachment( $data, $mimetype, $filename )
 	{
-		$part = new \Swift_EmbeddedFile( $data, $mimetype, $filename );
+		$part = new \Swift_EmbeddedFile( $data, $filename, $mimetype );
 
 		return $this->object->embed( $part );
 	}
