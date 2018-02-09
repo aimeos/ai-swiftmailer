@@ -16,7 +16,7 @@ before_script:
   - git clone --depth=50 --branch=master git://github.com/aimeos/aimeos-core.git ../aimeos-core
   - cd ../aimeos-core
   - mv ../ai-swiftmailer ext/
-  - composer require "swiftmailer/swiftmailer" ">=4.0"
+  - composer require "swiftmailer/swiftmailer" "~6.0"
 
 script:
   - vendor/bin/phing -Ddir=ext/ai-swiftmailer coverageext checkext
