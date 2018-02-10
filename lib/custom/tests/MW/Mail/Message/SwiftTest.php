@@ -125,7 +125,7 @@ class SwiftTest extends \PHPUnit_Framework_TestCase
 
 	public function testSetBody()
 	{
-		$this->mock->expects( $this->once() )->method( 'setBody' )
+		$this->mock->expects( $this->once() )->method( 'addPart' )
 			->with( $this->stringContains( 'test' ) );
 
 		$result = $this->object->setBody( 'test' );
@@ -135,7 +135,7 @@ class SwiftTest extends \PHPUnit_Framework_TestCase
 
 	public function testSetBodyHtml()
 	{
-		$this->mock->expects( $this->once() )->method( 'addPart' )
+		$this->mock->expects( $this->once() )->method( 'setBody' )
 			->with( $this->stringContains( 'test' ) );
 
 		$result = $this->object->setBodyHtml( 'test' );
