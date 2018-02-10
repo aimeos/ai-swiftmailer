@@ -9,14 +9,27 @@ php:
   - 5.5
   - 5.4
 
+
+env:
+  - VERSION=6.*
+  - VERSION=5.*
+  - VERSION=4.*
+
 matrix:
   fast_finish: true
+  exclude:
+    - php: 5.6
+      env: VERSION=6.*
+    - php: 5.5
+      env: VERSION=6.*
+    - php: 5.4
+      env: VERSION=6.*
 
 before_script:
   - git clone --depth=50 --branch=master git://github.com/aimeos/aimeos-core.git ../aimeos-core
   - cd ../aimeos-core
   - mv ../ai-swiftmailer ext/
-  - composer require "swiftmailer/swiftmailer" ">=4.0"
+  - composer require "swiftmailer/swiftmailer" "${VERSION}"
 
 script:
   - vendor/bin/phing -Ddir=ext/ai-swiftmailer coverageext checkext
