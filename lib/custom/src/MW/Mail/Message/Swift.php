@@ -156,7 +156,7 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 */
 	public function setBody( $message )
 	{
-		$this->object->addPart($message, 'text/plain');
+		$this->object->setBody( $message );
 		return $this;
 	}
 
@@ -169,7 +169,7 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 */
 	public function setBodyHtml( $message )
 	{
-		$this->object->setBody( $message, 'text/html' );
+		$this->object->addPart( $message, 'text/html' );
 		return $this;
 	}
 
