@@ -30,7 +30,7 @@ php -r "readfile('https://getcomposer.org/installer');" | php -- --filename=comp
 Add the ai-swiftmailer extension to the "require" section of your ```composer.json``` file:
 ```
 "require": [
-    "aimeos/ai-swiftmailer": "dev-master",
+    "aimeos/ai-swiftmailer": "~2019.04",
     ...
 ],
 ```
