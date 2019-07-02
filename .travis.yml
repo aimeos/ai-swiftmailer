@@ -20,7 +20,7 @@ matrix:
       env: VERSION=6.*
 
 before_script:
-  - git clone --depth=50 --branch=master git://github.com/aimeos/aimeos-core.git ../aimeos-core
+  - git clone --depth=50 --branch=2019.07 git://github.com/aimeos/aimeos-core.git ../aimeos-core
   - cd ../aimeos-core && mv ../ai-swiftmailer ext/
   - travis_retry composer require "swiftmailer/swiftmailer" "${VERSION}"
 
