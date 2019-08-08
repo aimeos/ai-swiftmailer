@@ -53,11 +53,14 @@ class Swift implements \Aimeos\MW\Mail\Iface
 	 * Sends the e-mail message to the mail server.
 	 *
 	 * @param \Aimeos\MW\Mail\Message\Iface $message E-mail message object
+	 * @return \Aimeos\MW\Mail\Iface Mail instance for method chaining
 	 */
 	public function send( \Aimeos\MW\Mail\Message\Iface $message )
 	{
 		$closure = $this->closure;
 		$closure()->send( $message->getObject() );
+
+		return $this;
 	}
 
 
