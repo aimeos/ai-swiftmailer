@@ -28,7 +28,7 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 * @param \Swift_Message $object Swift message object
 	 * @param string $charset Default charset of the message
 	 */
-	public function __construct( \Swift_Message $object, $charset )
+	public function __construct( \Swift_Message $object, string $charset )
 	{
 		$object->setCharset( $charset );
 
@@ -43,7 +43,7 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 * @param string|null $name Name of the user sending the e-mail or null for no name
 	 * @return \Aimeos\MW\Mail\Message\Iface Message object
 	 */
-	public function addFrom( $email, $name = null )
+	public function addFrom( string $email, string $name = null ) : Iface
 	{
 		$this->object->addFrom( $email, $name );
 		return $this;
@@ -57,7 +57,7 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 * @param string|null $name Name of the user owning the target mailbox or null for no name
 	 * @return \Aimeos\MW\Mail\Message\Iface Message object
 	 */
-	public function addTo( $email, $name = null )
+	public function addTo( string $email, string $name = null ) : Iface
 	{
 		$this->object->addTo( $email, $name );
 		return $this;
@@ -71,7 +71,7 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 * @param string|null $name Name of the user owning the target mailbox or null for no name
 	 * @return \Aimeos\MW\Mail\Message\Iface Message object
 	 */
-	public function addCc( $email, $name = null )
+	public function addCc( string $email, string $name = null ) : Iface
 	{
 		$this->object->addCc( $email, $name );
 		return $this;
@@ -85,7 +85,7 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 * @param string|null $name Name of the user owning the target mailbox or null for no name
 	 * @return \Aimeos\MW\Mail\Message\Iface Message object
 	 */
-	public function addBcc( $email, $name = null )
+	public function addBcc( string $email, string $name = null ) : Iface
 	{
 		$this->object->addBcc( $email, $name );
 		return $this;
@@ -99,7 +99,7 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 * @param string|null $name Name of the user which should receive all replies or null for no name
 	 * @return \Aimeos\MW\Mail\Message\Iface Message object
 	 */
-	public function addReplyTo( $email, $name = null )
+	public function addReplyTo( string $email, string $name = null ) : Iface
 	{
 		$this->object->addReplyTo( $email, $name );
 		return $this;
@@ -113,7 +113,7 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 * @param string $value Text content of the custom e-mail header
 	 * @return \Aimeos\MW\Mail\Message\Iface Message object
 	 */
-	public function addHeader( $name, $value )
+	public function addHeader( string $name, string $value ) : Iface
 	{
 		$hs = $this->object->getHeaders();
 		$hs->addTextHeader( $name, $value );
@@ -128,7 +128,7 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 * @param string|null $name Name of the user who sent the message or null for no name
 	 * @return \Aimeos\MW\Mail\Message\Iface Message object
 	 */
-	public function setSender( $email, $name = null )
+	public function setSender( string $email, string $name = null ) : Iface
 	{
 		$this->object->setSender( $email, $name );
 		return $this;
@@ -141,7 +141,7 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 * @param string $subject Subject of the message
 	 * @return \Aimeos\MW\Mail\Message\Iface Message object
 	 */
-	public function setSubject( $subject )
+	public function setSubject( string $subject ) : Iface
 	{
 		$this->object->setSubject( $subject );
 		return $this;
@@ -154,7 +154,7 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 * @param string $message Text body of the message
 	 * @return \Aimeos\MW\Mail\Message\Iface Message object
 	 */
-	public function setBody( $message )
+	public function setBody( string $message ) : Iface
 	{
 		$this->object->addPart($message, 'text/plain');
 		return $this;
@@ -167,7 +167,7 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 * @param string $message HTML body of the message
 	 * @return \Aimeos\MW\Mail\Message\Iface Message object
 	 */
-	public function setBodyHtml( $message )
+	public function setBodyHtml( string $message ) : Iface
 	{
 		$this->object->setBody( $message, 'text/html' );
 		return $this;
@@ -183,7 +183,7 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 * @param string $disposition Type of the disposition ("attachment" or "inline")
 	 * @return \Aimeos\MW\Mail\Message\Iface Message object
 	 */
-	public function addAttachment( $data, $mimetype, $filename, $disposition = 'attachment' )
+	public function addAttachment( string $data, string $mimetype, string $filename, string $disposition = 'attachment' ) : Iface
 	{
 		$part = new \Swift_Attachment( $data, $filename, $mimetype );
 		$part->setDisposition( $disposition );
@@ -201,7 +201,7 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 * @param string|null $filename Name of the attached file
 	 * @return string Content ID for referencing the attachment in the HTML body
 	 */
-	public function embedAttachment( $data, $mimetype, $filename )
+	public function embedAttachment( string $data, string $mimetype, string $filename ) : string
 	{
 		$part = new \Swift_EmbeddedFile( $data, $filename, $mimetype );
 
@@ -214,7 +214,7 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 *
 	 * @return \Swift_Message Swift mail message object
 	 */
-	public function getObject()
+	public function getObject() : \Swift_Message
 	{
 		return $this->object;
 	}
