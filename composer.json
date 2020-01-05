@@ -14,10 +14,13 @@
 	"prefer-stable": true,
 	"minimum-stability": "dev",
 	"require": {
-		"php": ">=5.3.3",
-		"swiftmailer/swiftmailer": "~4.0||~5.0||~6.0",
+		"php": "~7.1",
+		"swiftmailer/swiftmailer": "~5.0||~6.0",
 		"composer/installers": "^1.0",
 		"aimeos/aimeos-core": "dev-master"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "~7.0||~8.0"
 	},
 	"autoload": {
 		"psr-4": {

@@ -19,7 +19,7 @@ class SwiftTest extends \PHPUnit\Framework\TestCase
 	 *
 	 * @access protected
 	 */
-	protected function setUp()
+	protected function setUp() : void
 	{
 		if( class_exists( '\Swift_Message' ) === false ) {
 			$this->markTestSkipped( 'Class Swift_Message not found' );
@@ -37,7 +37,7 @@ class SwiftTest extends \PHPUnit\Framework\TestCase
 	 *
 	 * @access protected
 	 */
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->object, $this->mock );
 	}
