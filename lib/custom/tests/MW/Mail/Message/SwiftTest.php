@@ -1,48 +1,46 @@
 <?php
 
-namespace Aimeos\MW\Mail\Message;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Aimeos (aimeos.org), 2014-2020
  */
+
+
+namespace Aimeos\MW\Mail\Message;
+
+
 class SwiftTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
+	private $mailer;
 	private $mock;
 
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function setUp() : void
 	{
 		if( class_exists( 'Swift_Message' ) === false ) {
 			$this->markTestSkipped( 'Class Swift_Message not found' );
 		}
 
+		$this->mailer = $this->getMockBuilder( '\Aimeos\MW\Mail\Swift' )
+			->disableOriginalConstructor()
+			->setMethods( ['send'] )
+			->getMock();
+
 		$this->mock = $this->getMockBuilder( 'Swift_Message' )
-			->setMethods( array(
+			->setMethods( [
 				'addFrom', 'addTo', 'addCc', 'addBcc',
 				'addReplyTo', 'addTextHeader', 'setSender',
 				'setSubject', 'setBody', 'addPart'
-			) )->getMock();
+			] )->getMock();
 
-		$this->object = new \Aimeos\MW\Mail\Message\Swift( $this->mock, 'UTF-8' );
+		$this->object = new \Aimeos\MW\Mail\Message\Swift( $this->mailer, $this->mock, 'UTF-8' );
 	}
 
-	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 *
-	 * @access protected
-	 */
+
 	protected function tearDown() : void
 	{
+		unset( $this->object, $this->mailer );
 	}
 
 
@@ -100,6 +98,13 @@ class SwiftTest extends \PHPUnit\Framework\TestCase
 	{
 		$result = $this->object->addHeader( 'test', 'value' );
 		$this->assertSame( $this->object, $result );
+	}
+
+
+	public function testSend()
+	{
+		$this->mailer->expects( $this->once() )->method( 'send' );
+		$this->assertSame( $this->object, $this->object->send() );
 	}
 
 

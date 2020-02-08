@@ -45,7 +45,7 @@ class Swift implements \Aimeos\MW\Mail\Iface
 	 */
 	public function createMessage( string $charset = 'UTF-8' ) : \Aimeos\MW\Mail\Message\Iface
 	{
-		return new \Aimeos\MW\Mail\Message\Swift( new \Swift_Message(), $charset );
+		return new \Aimeos\MW\Mail\Message\Swift( $this, new \Swift_Message(), $charset );
 	}
 
 

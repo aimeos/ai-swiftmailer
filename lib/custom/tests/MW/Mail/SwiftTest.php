@@ -1,24 +1,20 @@
 <?php
 
-namespace Aimeos\MW\Mail;
-
-
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Aimeos (aimeos.org), 2014-2020
  */
+
+
+namespace Aimeos\MW\Mail;
+
+
 class SwiftTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $mock;
 
 
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 *
-	 * @access protected
-	 */
 	protected function setUp() : void
 	{
 		if( class_exists( '\Swift_Message' ) === false ) {
@@ -31,12 +27,7 @@ class SwiftTest extends \PHPUnit\Framework\TestCase
 		$this->object = new \Aimeos\MW\Mail\Swift( $this->mock );
 	}
 
-	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 *
-	 * @access protected
-	 */
+
 	protected function tearDown() : void
 	{
 		unset( $this->object, $this->mock );

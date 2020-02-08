@@ -19,19 +19,22 @@ namespace Aimeos\MW\Mail\Message;
  */
 class Swift implements \Aimeos\MW\Mail\Message\Iface
 {
+	private $mailer;
 	private $object;
 
 
 	/**
 	 * Initializes the message instance.
 	 *
+	 * @param \Aimeos\MW\Mail\Iface $mailer Swift mailer object
 	 * @param \Swift_Message $object Swift message object
 	 * @param string $charset Default charset of the message
 	 */
-	public function __construct( \Swift_Message $object, string $charset )
+	public function __construct( \Aimeos\MW\Mail\Iface $mailer, \Swift_Message $object, string $charset )
 	{
 		$object->setCharset( $charset );
 
+		$this->mailer = $mailer;
 		$this->object = $object;
 	}
 
@@ -117,6 +120,18 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	{
 		$hs = $this->object->getHeaders();
 		$hs->addTextHeader( $name, $value );
+		return $this;
+	}
+
+
+	/**
+	 * Sends the e-mail message to the mail server.
+	 *
+	 * @return \Aimeos\MW\Mail\Message\Iface Message object
+	 */
+	public function send() : Iface
+	{
+		$this->mailer->send( $this );
 		return $this;
 	}
 
