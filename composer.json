@@ -17,7 +17,7 @@
 		"php": "~7.1",
 		"swiftmailer/swiftmailer": "~5.0||~6.0",
 		"composer/installers": "^1.0",
-		"aimeos/aimeos-core": "dev-master"
+		"aimeos/aimeos-core": "2020.10.*"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~7.0||~8.0"
