@@ -1,3 +1,0 @@
-src_dir: ext/ai-swiftmailer
-json_path: ext/ai-swiftmailer/coveralls.json
-coverage_clover: ext/ai-swiftmailer/lib/custom/tests/coverage.xml
