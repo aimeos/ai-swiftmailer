@@ -11,16 +11,16 @@ jobs:
     steps:
       - checkout
       - run: git clone --depth=50 --branch=master git://github.com/aimeos/aimeos-core.git ../aimeos-core
-      - run: cd .. && mv project aimeos-core/ext/ai-monolog && mv aimeos-core project && cd project
+      - run: cd .. && mv project aimeos-core/ext/ai-swiftmailer && mv aimeos-core project && cd project
       - restore_cache:
           keys:
             - php71-{{ checksum "composer.json" }}
-      - run: composer req --no-update monolog/monolog:~1.0
+      - run: composer req --no-update swiftmailer/swiftmailer:~4.0
       - run: composer update -n --prefer-dist
       - save_cache:
           key: php71-{{ checksum "composer.json" }}
           paths: [./vendor]
-      - run: ./vendor/bin/phing -Ddir=ext/ai-monolog testext
+      - run: ./vendor/bin/phing -Ddir=ext/ai-swiftmailer testext
 
   "php-7.2":
     docker:
@@ -28,16 +28,16 @@ jobs:
     steps:
       - checkout
       - run: git clone --depth=50 --branch=master git://github.com/aimeos/aimeos-core.git ../aimeos-core
-      - run: cd .. && mv project aimeos-core/ext/ai-monolog && mv aimeos-core project && cd project
+      - run: cd .. && mv project aimeos-core/ext/ai-swiftmailer && mv aimeos-core project && cd project
       - restore_cache:
           keys:
             - php72-{{ checksum "composer.json" }}
-      - run: composer req --no-update monolog/monolog:~1.0
+      - run: composer req --no-update swiftmailer/swiftmailer:~5.0
       - run: composer update -n --prefer-dist
       - save_cache:
           key: php72-{{ checksum "composer.json" }}
           paths: [./vendor]
-      - run: ./vendor/bin/phing -Ddir=ext/ai-monolog testext checkext
+      - run: ./vendor/bin/phing -Ddir=ext/ai-swiftmailer testext checkext
 
   "php-7.3":
     docker:
@@ -45,16 +45,16 @@ jobs:
     steps:
       - checkout
       - run: git clone --depth=50 --branch=master git://github.com/aimeos/aimeos-core.git ../aimeos-core
-      - run: cd .. && mv project aimeos-core/ext/ai-monolog && mv aimeos-core project && cd project
+      - run: cd .. && mv project aimeos-core/ext/ai-swiftmailer && mv aimeos-core project && cd project
       - restore_cache:
           keys:
             - php73-{{ checksum "composer.json" }}
-      - run: composer req --no-update monolog/monolog:~1.0
+      - run: composer req --no-update swiftmailer/swiftmailer:~6.0
       - run: composer update -n --prefer-dist
       - save_cache:
           key: php73-{{ checksum "composer.json" }}
           paths: [./vendor]
-      - run: ./vendor/bin/phing -Ddir=ext/ai-monolog testext
+      - run: ./vendor/bin/phing -Ddir=ext/ai-swiftmailer testext
 
   "php-7.4":
     docker:
@@ -62,17 +62,17 @@ jobs:
     steps:
       - checkout
       - run: git clone --depth=50 --branch=master git://github.com/aimeos/aimeos-core.git ../aimeos-core
-      - run: cd .. && mv project aimeos-core/ext/ai-monolog && mv aimeos-core project && cd project
+      - run: cd .. && mv project aimeos-core/ext/ai-swiftmailer && mv aimeos-core project && cd project
       - restore_cache:
           keys:
             - php74-{{ checksum "composer.json" }}
-      - run: composer req --no-update monolog/monolog:~1.0
+      - run: composer req --no-update swiftmailer/swiftmailer:~6.0
       - run: composer update -n --prefer-dist
       - save_cache:
           key: php74-{{ checksum "composer.json" }}
           paths: [./vendor]
-      - run: ./vendor/bin/phing -Ddir=ext/ai-monolog coverageext
-      - run: ./vendor/bin/php-coveralls -x ext/ai-monolog/lib/custom/tests/coverage.xml -vvv
+      - run: ./vendor/bin/phing -Ddir=ext/ai-swiftmailer coverageext
+      - run: ./vendor/bin/php-coveralls -x ext/ai-swiftmailer/lib/custom/tests/coverage.xml -vvv
 
 workflows:
   version: 2
