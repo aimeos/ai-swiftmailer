@@ -48,7 +48,9 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 */
 	public function addFrom( string $email, string $name = null ) : Iface
 	{
-		$this->object->addFrom( $email, $name );
+		if( $email ) {
+			$this->object->addFrom( $email, $name );
+		}
 		return $this;
 	}
 
@@ -62,7 +64,9 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 */
 	public function addTo( string $email, string $name = null ) : Iface
 	{
-		$this->object->addTo( $email, $name );
+		if( $email ) {
+			$this->object->addTo( $email, $name );
+		}
 		return $this;
 	}
 
@@ -76,7 +80,9 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 */
 	public function addCc( string $email, string $name = null ) : Iface
 	{
-		$this->object->addCc( $email, $name );
+		if( $email ) {
+			$this->object->addCc( $email, $name );
+		}
 		return $this;
 	}
 
@@ -90,7 +96,9 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 */
 	public function addBcc( string $email, string $name = null ) : Iface
 	{
-		$this->object->addBcc( $email, $name );
+		if( $email ) {
+			$this->object->addBcc( $email, $name );
+		}
 		return $this;
 	}
 
@@ -104,7 +112,9 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 */
 	public function addReplyTo( string $email, string $name = null ) : Iface
 	{
-		$this->object->addReplyTo( $email, $name );
+		if( $email ) {
+			$this->object->addReplyTo( $email, $name );
+		}
 		return $this;
 	}
 
@@ -118,8 +128,11 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 */
 	public function addHeader( string $name, string $value ) : Iface
 	{
-		$hs = $this->object->getHeaders();
-		$hs->addTextHeader( $name, $value );
+		if( $name )
+		{
+			$hs = $this->object->getHeaders();
+			$hs->addTextHeader( $name, $value );
+		}
 		return $this;
 	}
 
@@ -145,7 +158,9 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 */
 	public function setSender( string $email, string $name = null ) : Iface
 	{
-		$this->object->setSender( $email, $name );
+		if( $email ) {
+			$this->object->setSender( $email, $name );
+		}
 		return $this;
 	}
 
@@ -158,7 +173,9 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 */
 	public function setSubject( string $subject ) : Iface
 	{
-		$this->object->setSubject( $subject );
+		if( $subject ) {
+			$this->object->setSubject( $subject );
+		}
 		return $this;
 	}
 
@@ -171,7 +188,9 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 */
 	public function setBody( string $message ) : Iface
 	{
-		$this->object->addPart( $message, 'text/plain' );
+		if( $message ) {
+			$this->object->addPart( $message, 'text/plain' );
+		}
 		return $this;
 	}
 
@@ -184,7 +203,9 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 */
 	public function setBodyHtml( string $message ) : Iface
 	{
-		$this->object->setBody( $message, 'text/html' );
+		if( $message ) {
+			$this->object->setBody( $message, 'text/html' );
+		}
 		return $this;
 	}
 
@@ -200,10 +221,14 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 */
 	public function addAttachment( string $data, string $mimetype, string $filename, string $disposition = 'attachment' ) : Iface
 	{
-		$part = new \Swift_Attachment( $data, $filename, $mimetype );
-		$part->setDisposition( $disposition );
+		if( $data )
+		{
+			$part = new \Swift_Attachment( $data, $filename, $mimetype );
+			$part->setDisposition( $disposition );
 
-		$this->object->attach( $part );
+			$this->object->attach( $part );
+		}
+
 		return $this;
 	}
 
