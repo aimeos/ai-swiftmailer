@@ -254,7 +254,7 @@ class Swift implements \Aimeos\MW\Mail\Message\Iface
 	 *
 	 * @return \Swift_Message Swift mail message object
 	 */
-	public function getObject() : \Swift_Message
+	public function object() : \Swift_Message
 	{
 		return $this->object;
 	}

@@ -58,7 +58,7 @@ class Swift implements \Aimeos\MW\Mail\Iface
 	public function send( \Aimeos\MW\Mail\Message\Iface $message ) : Iface
 	{
 		$closure = $this->closure;
-		$closure()->send( $message->getObject() );
+		$closure()->send( $message->object() );
 
 		return $this;
 	}

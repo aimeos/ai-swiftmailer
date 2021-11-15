@@ -162,7 +162,7 @@ class SwiftTest extends \PHPUnit\Framework\TestCase
 
 	public function testGetObject()
 	{
-		$this->assertInstanceOf( 'Swift_Message', $this->object->getObject() );
+		$this->assertInstanceOf( 'Swift_Message', $this->object->object() );
 	}
 
 
