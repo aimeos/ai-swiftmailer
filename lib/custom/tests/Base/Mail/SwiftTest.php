@@ -6,7 +6,7 @@
  */
 
 
-namespace Aimeos\MW\Mail;
+namespace Aimeos\Base\Mail;
 
 
 class SwiftTest extends \PHPUnit\Framework\TestCase
@@ -24,7 +24,7 @@ class SwiftTest extends \PHPUnit\Framework\TestCase
 		$transport = new \Swift_Transport_NullTransport( new \Swift_Events_SimpleEventDispatcher() );
 
 		$this->mock = $this->getMockBuilder( 'Swift_Mailer' )->setConstructorArgs( array( $transport ) )->getMock();
-		$this->object = new \Aimeos\MW\Mail\Swift( $this->mock );
+		$this->object = new \Aimeos\Base\Mail\Swift( $this->mock );
 	}
 
 
@@ -37,16 +37,16 @@ class SwiftTest extends \PHPUnit\Framework\TestCase
 	public function testClosure()
 	{
 		$mock = $this->mock;
-		$object = new \Aimeos\MW\Mail\Swift( function() use ( $mock ) { return $mock; } );
+		$object = new \Aimeos\Base\Mail\Swift( function() use ( $mock ) { return $mock; } );
 
-		$this->assertInstanceOf( '\\Aimeos\\MW\\Mail\\Swift', $object );
+		$this->assertInstanceOf( '\\Aimeos\\Base\\Mail\\Swift', $object );
 	}
 
 
 	public function testCreate()
 	{
 		$result = $this->object->create( 'ISO-8859-1' );
-		$this->assertInstanceOf( '\\Aimeos\\MW\\Mail\\Message\\Iface', $result );
+		$this->assertInstanceOf( '\\Aimeos\\Base\\Mail\\Message\\Iface', $result );
 	}
 
 
@@ -61,6 +61,6 @@ class SwiftTest extends \PHPUnit\Framework\TestCase
 	public function testClone()
 	{
 		$result = clone $this->object;
-		$this->assertInstanceOf( '\\Aimeos\\MW\\Mail\\Iface', $result );
+		$this->assertInstanceOf( '\\Aimeos\\Base\\Mail\\Iface', $result );
 	}
 }

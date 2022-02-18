@@ -6,7 +6,7 @@
  */
 
 
-namespace Aimeos\MW\Mail\Message;
+namespace Aimeos\Base\Mail\Message;
 
 
 class SwiftTest extends \PHPUnit\Framework\TestCase
@@ -22,7 +22,7 @@ class SwiftTest extends \PHPUnit\Framework\TestCase
 			$this->markTestSkipped( 'Class Swift_Message not found' );
 		}
 
-		$this->mailer = $this->getMockBuilder( '\Aimeos\MW\Mail\Swift' )
+		$this->mailer = $this->getMockBuilder( '\Aimeos\Base\Mail\Swift' )
 			->disableOriginalConstructor()
 			->setMethods( ['send'] )
 			->getMock();
@@ -34,7 +34,7 @@ class SwiftTest extends \PHPUnit\Framework\TestCase
 				'setSubject', 'setBody', 'addPart'
 			] )->getMock();
 
-		$this->object = new \Aimeos\MW\Mail\Message\Swift( $this->mailer, $this->mock, 'UTF-8' );
+		$this->object = new \Aimeos\Base\Mail\Message\Swift( $this->mailer, $this->mock, 'UTF-8' );
 	}
 
 
@@ -77,9 +77,9 @@ class SwiftTest extends \PHPUnit\Framework\TestCase
 	public function testBcc()
 	{
 		$this->mock->expects( $this->once() )->method( 'addBcc' )
-			->with( $this->stringContains( 'a@b' ), $this->stringContains( 'test' ) );
+			->with( $this->stringContains( 'a@b' ) );
 
-		$result = $this->object->bcc( 'a@b', 'test' );
+		$result = $this->object->bcc( 'a@b' );
 		$this->assertSame( $this->object, $result );
 	}
 
@@ -169,6 +169,6 @@ class SwiftTest extends \PHPUnit\Framework\TestCase
 	public function testClone()
 	{
 		$result = clone $this->object;
-		$this->assertInstanceOf( '\\Aimeos\\MW\\Mail\\Message\\Iface', $result );
+		$this->assertInstanceOf( '\\Aimeos\\Base\\Mail\\Message\\Iface', $result );
 	}
 }

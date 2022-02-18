@@ -3,21 +3,21 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Aimeos (aimeos.org), 2014-2022
- * @package MW
+ * @package Base
  * @subpackage Mail
  */
 
 
-namespace Aimeos\MW\Mail;
+namespace Aimeos\Base\Mail;
 
 
 /**
  * SwiftMailer implementation for creating and sending e-mails.
  *
- * @package MW
+ * @package Base
  * @subpackage Mail
  */
-class Swift implements \Aimeos\MW\Mail\Iface
+class Swift implements \Aimeos\Base\Mail\Iface
 {
 	private $closure;
 
@@ -41,21 +41,21 @@ class Swift implements \Aimeos\MW\Mail\Iface
 	 * Creates a new e-mail message object.
 	 *
 	 * @param string $charset Default charset of the message
-	 * @return \Aimeos\MW\Mail\Message\Iface E-mail message object
+	 * @return \Aimeos\Base\Mail\Message\Iface E-mail message object
 	 */
-	public function create( string $charset = 'UTF-8' ) : \Aimeos\MW\Mail\Message\Iface
+	public function create( string $charset = 'UTF-8' ) : \Aimeos\Base\Mail\Message\Iface
 	{
-		return new \Aimeos\MW\Mail\Message\Swift( $this, new \Swift_Message(), $charset );
+		return new \Aimeos\Base\Mail\Message\Swift( $this, new \Swift_Message(), $charset );
 	}
 
 
 	/**
 	 * Sends the e-mail message to the mail server.
 	 *
-	 * @param \Aimeos\MW\Mail\Message\Iface $message E-mail message object
-	 * @return \Aimeos\MW\Mail\Iface Mail instance for method chaining
+	 * @param \Aimeos\Base\Mail\Message\Iface $message E-mail message object
+	 * @return \Aimeos\Base\Mail\Iface Mail instance for method chaining
 	 */
-	public function send( \Aimeos\MW\Mail\Message\Iface $message ) : Iface
+	public function send( \Aimeos\Base\Mail\Message\Iface $message ) : Iface
 	{
 		$closure = $this->closure;
 		$closure()->send( $message->object() );
