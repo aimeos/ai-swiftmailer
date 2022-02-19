@@ -216,8 +216,8 @@ class Swift implements \Aimeos\Base\Mail\Message\Iface
 	 * Adds an attachment to the message.
 	 *
 	 * @param string|null $data Binary or string @author nose
-	 * @param string|null $mimetype Mime type of the attachment (e.g. "text/plain", "application/octet-stream", etc.)
 	 * @param string|null $filename Name of the attached file (or null if inline disposition is used)
+	 * @param string|null $mimetype Mime type of the attachment (e.g. "text/plain", "application/octet-stream", etc.)
 	 * @param string $disposition Type of the disposition ("attachment" or "inline")
 	 * @return \Aimeos\Base\Mail\Message\Iface Message object
 	 */
@@ -239,8 +239,8 @@ class Swift implements \Aimeos\Base\Mail\Message\Iface
 	 * Embeds an attachment into the message and returns its reference.
 	 *
 	 * @param string|null $data Binary or string
-	 * @param string|null $mimetype Mime type of the attachment (e.g. "text/plain", "application/octet-stream", etc.)
 	 * @param string|null $filename Name of the attached file
+	 * @param string|null $mimetype Mime type of the attachment (e.g. "text/plain", "application/octet-stream", etc.)
 	 * @return string Content ID for referencing the attachment in the HTML body
 	 */
 	public function embed( ?string $data, string $filename = null, string $mimetype = null ) : string
