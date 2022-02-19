@@ -215,20 +215,20 @@ class Swift implements \Aimeos\Base\Mail\Message\Iface
 	/**
 	 * Adds an attachment to the message.
 	 *
-	 * @param string $data Binary or string
-	 * @param string $mimetype Mime type of the attachment (e.g. "text/plain", "application/octet-stream", etc.)
+	 * @param string|null $data Binary or string @author nose
+	 * @param string|null $mimetype Mime type of the attachment (e.g. "text/plain", "application/octet-stream", etc.)
 	 * @param string|null $filename Name of the attached file (or null if inline disposition is used)
 	 * @param string $disposition Type of the disposition ("attachment" or "inline")
 	 * @return \Aimeos\Base\Mail\Message\Iface Message object
 	 */
-	public function attach( string $data, string $mimetype, string $filename, string $disposition = 'attachment' ) : Iface
+	public function attach( ?string $data, string $filename = null, string $mimetype = null, string $disposition = 'attachment' ) : Iface
 	{
 		if( $data )
 		{
-			$part = new \Swift_Attachment( $data, $filename, $mimetype );
-			$part->setDisposition( $disposition );
+			$filename = $filename ?: md5( $data );
+			$mimetype = $mimetype ?: (new \finfo( FILEINFO_MIME_TYPE ))->buffer( $data );
 
-			$this->object->attach( $part );
+			$this->object->attach( (new \Swift_Attachment( $data, $filename, $mimetype ))->setDisposition( $disposition ) );
 		}
 
 		return $this;
@@ -238,16 +238,22 @@ class Swift implements \Aimeos\Base\Mail\Message\Iface
 	/**
 	 * Embeds an attachment into the message and returns its reference.
 	 *
-	 * @param string $data Binary or string
-	 * @param string $mimetype Mime type of the attachment (e.g. "text/plain", "application/octet-stream", etc.)
+	 * @param string|null $data Binary or string
+	 * @param string|null $mimetype Mime type of the attachment (e.g. "text/plain", "application/octet-stream", etc.)
 	 * @param string|null $filename Name of the attached file
 	 * @return string Content ID for referencing the attachment in the HTML body
 	 */
-	public function embed( string $data, string $mimetype, string $filename ) : string
+	public function embed( ?string $data, string $filename = null, string $mimetype = null ) : string
 	{
-		$part = new \Swift_EmbeddedFile( $data, $filename, $mimetype );
+		if( $data )
+		{
+			$filename = $filename ?: md5( $data );
+			$mimetype = $mimetype ?: (new \finfo( FILEINFO_MIME_TYPE ))->buffer( $data );
 
-		return $this->object->embed( $part );
+			return $this->object->embed( new \Swift_EmbeddedFile( $data, $filename, $mimetype ) );
+		}
+
+		return '';
 	}
 
 

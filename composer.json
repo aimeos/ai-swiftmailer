@@ -15,6 +15,7 @@
 	"minimum-stability": "dev",
 	"require": {
 		"php": "~7.1||~8.0",
+		"ext-fileinfo": "*",
 		"swiftmailer/swiftmailer": "~5.0||~6.0",
 		"aimeos/aimeos-core": "dev-master"
 	},
