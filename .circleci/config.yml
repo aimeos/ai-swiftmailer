@@ -106,7 +106,7 @@ jobs:
           key: php81-{{ checksum "composer.json" }}
           paths: [./vendor]
       - run: ./vendor/bin/phing -Ddir=ext/ai-swiftmailer coverageext
-      - run: ./vendor/bin/php-coveralls -x ext/ai-swiftmailer/lib/custom/tests/coverage.xml -vvv
+      - run: ./vendor/bin/php-coveralls --root_dir ext/ai-swiftmailer -o coveralls.json -vvv -x lib/custom/tests/coverage.xml
 
 workflows:
   version: 2
